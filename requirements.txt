@@ -9,6 +9,7 @@ cffi==1.14.6
 channels==3.0.4
 channels-redis==3.3.0
 charset-normalizer==2.0.3
+colorama==0.4.4
 constantly==15.1.0
 coreapi==2.3.3
 coreschema==0.0.4
@@ -27,9 +28,11 @@ idna==3.2
 incremental==21.3.0
 itypes==1.2.0
 Jinja2==3.0.1
+loguru==0.5.3
 MarkupSafe==2.0.1
 msgpack==1.0.2
 oauthlib==3.1.1
+phonenumbers==8.12.28
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
@@ -49,4 +52,5 @@ twisted-iocpsupport==1.0.1
 txaio==21.2.1
 uritemplate==3.0.1
 urllib3==1.26.6
+win32-setctime==1.0.3
 zope.interface==5.4.0

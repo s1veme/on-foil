@@ -1,7 +1,7 @@
 import os
 
 from channels.routing import ProtocolTypeRouter, URLRouter
-from channels.auth import AuthMiddlewareStack
+from .middleware import SocketTokenAuthMiddleware
 
 from django.core.asgi import get_asgi_application
 
@@ -11,7 +11,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangochannels.settings')
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
-    "websocket": AuthMiddlewareStack(
+    "websocket": SocketTokenAuthMiddleware(
         URLRouter(
             reservation.routing.websocket_urlpatterns
         )

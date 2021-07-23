@@ -4,5 +4,5 @@ from . import consumers
 
 
 websocket_urlpatterns = [
-    path('connect/<str:token>', consumers.ReservationConsumer.as_asgi())
+    path('connect', consumers.ReservationConsumer.as_asgi())
 ]
