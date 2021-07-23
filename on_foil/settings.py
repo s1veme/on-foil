@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
 
     'channels',
     'corsheaders',
+    'rest_framework',
+    'rest_framework_simplejwt',
 
     'reservation',
 ]
@@ -77,13 +80,13 @@ WSGI_APPLICATION = 'on_foil.wsgi.application'
 ASGI_APPLICATION = "on_foil.asgi.application"
 
 
-CHANNELS_LAYERS = {
+CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('localhost', 6379)]
-        }
-    }
+            "hosts": [('localhost', 6379)],
+        },
+    },
 }
 
 # Database
@@ -155,3 +158,17 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+REST_USE_JWT = True
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=12),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=24),
+}
