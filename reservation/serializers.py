@@ -8,8 +8,10 @@ class ReservationSerializer(ModelSerializer):
 		model = Reservation
 		fields = [
 			'id',
+			'name',
+			'surname',
+			'table',
 			'date',
 			'start',
 			'end',
-			'table'
 		]
