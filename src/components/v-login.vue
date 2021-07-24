@@ -25,10 +25,13 @@ export default {
 
 		getLogin() {
 			const userData = {
-			username: this.username,
-			password: this.password,
-		};
-			this.createToken(userData);
+				username: this.username,
+				password: this.password,
+			};
+
+			this.createToken(userData)
+			.then(() => this.$router.push('/'))
+			.catch(err => console.log(err))
 		},
 	}
 }

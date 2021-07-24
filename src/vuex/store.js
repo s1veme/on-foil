@@ -7,16 +7,19 @@ let store = createStore({
 		return {
 			user: {
 				token: localStorage.getItem('token') || '',
-			}
+			},
+			reservation: null
 		}
 	},
 	mutations: {
 		setUser(state, userData) {
+			console.log(userData)
 			if (state.user) {
 				state.user = { ...state.user, ...userData }
 			} else {
 				state.user = userData
 			}
+			console.log(this.state.user)
 		},
 	},
 	actions: {
@@ -28,7 +31,9 @@ let store = createStore({
 				] = `Bearer ${tokenData.data.access}`;
 				localStorage.setItem('token', tokenData.data.access)
 
-				commit('setUser', tokenData.data.access)
+				commit('setUser', {'token': tokenData.data.access})
+
+				return true
 			}
 		}
 	},
