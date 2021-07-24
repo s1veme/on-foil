@@ -4,10 +4,14 @@ from urllib.parse import parse_qs
 from rest_framework_simplejwt.tokens import UntypedToken
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth import get_user_model
-from channels.db import database_sync_to_async
+
 from django.conf import settings
 from django.db import close_old_connections
+
+from channels.db import database_sync_to_async
+
 from jwt import decode as jwt_decode
 
 
@@ -34,9 +38,21 @@ class SocketTokenAuthMiddleware:
 
         await close_connections()
 
-        token = parse_qs(scope["query_string"].decode("utf8"))["token"][0]
+        query_string = parse_qs(scope["query_string"].decode("utf8"))
 
-        decoded_data = jwt_decode(token, settings.SECRET_KEY, algorithms=["HS256"])
-        scope['user'] = await get_user(decoded_data['user_id'])
+        if 'token' not in query_string:
+            scope['user'] = AnonymousUser()
+            return await self.inner(scope, receive, send)
+
+        token = query_string["token"][0]
+
+        try:
+            UntypedToken(token)
+        except (InvalidToken, TokenError) as e:
+            print(e)
+            return None
+        else:
+            decoded_data = jwt_decode(token, settings.SECRET_KEY, algorithms=["HS256"])
+            scope['user'] = await get_user(decoded_data['user_id'])
 
         return await self.inner(scope, receive, send)
