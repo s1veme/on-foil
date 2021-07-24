@@ -1,8 +1,8 @@
 <template>
     <div class="v-admin-panel">
         <h1>ADMIN-PANEL</h1>
-        <div>
-            {{ reservation }}
+        <div v-for="item in reservation" :key="item.id">
+            <h2>{{ item.name }} {{ item.surname }}</h2>
         </div>
     </div>
 </template>
@@ -23,6 +23,9 @@ export default {
 
             if (message.action === 'give_reservation') {
                 this.reservation = message.data.reservation
+            }
+            if (message.action === 'add_reservation') {
+                this.reservation.push(message.data.reservation)
             }
         },
         socketInit() {
