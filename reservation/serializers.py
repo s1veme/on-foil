@@ -1,4 +1,4 @@
-from rest_frameword.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer
 
 from .models import Reservation
 
@@ -10,5 +10,6 @@ class ReservationSerializer(ModelSerializer):
 			'id',
 			'date',
 			'start',
-			'end'
+			'end',
+			'table'
 		]

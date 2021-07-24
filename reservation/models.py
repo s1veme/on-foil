@@ -3,6 +3,9 @@ from django.core.validators import MaxValueValidator
 
 
 class Reservation(models.Model):
+	table = models.PositiveSmallIntegerField(
+		'Номер столика'
+	)
 	phone_number = models.CharField(
 		'Номер телефона',
 		max_length=20
@@ -17,30 +20,36 @@ class Reservation(models.Model):
 	)
 	start = models.TimeField(
 		'Начало брони',
-     	auto_now=False,
-      	auto_now_add=False,
-    )
+		auto_now=False,
+		auto_now_add=False,
+	)
 	end = models.TimeField(
 		'Конец брони',
-     	auto_now=False,
-      	auto_now_add=False,
-    )
+		auto_now=False,
+		auto_now_add=False,
+	)
 	date = models.DateField(
 		'Дата',
 	)
 	taste = models.CharField(
 		'Вкус',
-		max_length=4096
+		max_length=4096,
+		blank=True,
+		null=True
 	)
 	sturdiness = models.PositiveSmallIntegerField(
 		'Крепкость',
 		default=1,
 		validators=[
 			MaxValueValidator(10)
-		]
+		],
+		blank=True,
+		null=True
 	)
- 	wishes = models.TextField(
-		'Пожелания'
+	wishes = models.TextField(
+		'Пожелания',
+		blank=True,
+		null=True
 	)
 	before_arrival = models.BooleanField(
 		'Забить до прихода',

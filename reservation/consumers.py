@@ -6,8 +6,11 @@ from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth import get_user_model
 
+from .serializers import ReservationSerializer
+from .models import Reservation
 
 User = get_user_model()
+
 
 class ReservationConsumer(AsyncJsonWebsocketConsumer):
 	async def connect(self):
@@ -18,6 +21,14 @@ class ReservationConsumer(AsyncJsonWebsocketConsumer):
 			return
 
 		await self.accept()
+
+		reservation = await self.get_reservation_json()
+		await self._send_message(
+			{
+				'reservation': reservation
+			},
+			'give_reservation'
+		)
 
 
 	async def receive_json(self, content, **kwargs):
@@ -37,9 +48,13 @@ class ReservationConsumer(AsyncJsonWebsocketConsumer):
 
 
 	@database_sync_to_async
-	def get_user(self, pk):
-		user = User.objects.get(id=pk)
-		return user
+	def get_reservation_json(self):
+		reservation = ReservationSerializer(
+			Reservation.objects.all(),
+			many=True
+		)
+
+		return reservation.data
 
 
 	async def _send_message(self, data, action=None):
