@@ -1,10 +1,15 @@
+import datetime
 from django.db import models
 from django.core.validators import MaxValueValidator
 
 
 class Reservation(models.Model):
 	table = models.PositiveSmallIntegerField(
-		'Номер столика'
+		'Номер столика',
+		validators=[
+			MaxValueValidator(10)
+		],
+		default=1
 	)
 	phone_number = models.CharField(
 		'Номер телефона',
@@ -30,6 +35,7 @@ class Reservation(models.Model):
 	)
 	date = models.DateField(
 		'Дата',
+		default=datetime.date.today
 	)
 	taste = models.CharField(
 		'Вкус',
@@ -53,5 +59,5 @@ class Reservation(models.Model):
 	)
 	before_arrival = models.BooleanField(
 		'Забить до прихода',
-		default=False
+		default=False,
 	)
