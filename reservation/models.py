@@ -3,13 +3,22 @@ from django.db import models
 from django.core.validators import MaxValueValidator
 
 
+class Table(models.Model):
+	notes = models.TextField(
+		'Заметка',
+		blank=True,
+		null=True
+	)
+
+	def __str__(self):
+		return str(self.id)
+
+
 class Reservation(models.Model):
-	table = models.PositiveSmallIntegerField(
-		'Номер столика',
-		validators=[
-			MaxValueValidator(10)
-		],
-		default=1
+	table = models.ForeignKey(
+		Table,
+		on_delete=models.PROTECT,
+		verbose_name='Столик',
 	)
 	phone_number = models.CharField(
 		'Номер телефона',
@@ -61,3 +70,6 @@ class Reservation(models.Model):
 		'Забить до прихода',
 		default=False,
 	)
+
+	def __str__(self):
+		return f'{self.name} {self.surname}'

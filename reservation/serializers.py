@@ -1,17 +1,41 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import (
+	SerializerMethodField,
+	ModelSerializer
+)
 
-from .models import Reservation
+from .models import (
+	Reservation,
+	Table
+)
 
 
 class ReservationSerializer(ModelSerializer):
 	class Meta:
 		model = Reservation
 		fields = [
-			'id',
 			'name',
 			'surname',
-			'table',
 			'date',
 			'start',
 			'end',
 		]
+
+
+class TableSerializer(ModelSerializer):
+	reservation = SerializerMethodField()
+
+	class Meta:
+		model = Table
+		fields = [
+			'id',
+			'reservation',
+		]
+
+
+	@staticmethod
+	def get_reservation(obj):
+		qs = ReservationSerializer(
+			Reservation.objects.filter(table=obj),
+			many=True
+		)
+		return qs.data

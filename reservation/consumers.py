@@ -9,8 +9,8 @@ from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from .serializers import ReservationSerializer
-from .models import Reservation
+from .serializers import TableSerializer
+from .models import Table
 
 
 User = get_user_model()
@@ -19,7 +19,7 @@ User = get_user_model()
 class ReservationConsumer(AsyncJsonWebsocketConsumer):
 	async def connect(self):
 		user = self.scope.get('user')
-
+		
 		if user == AnonymousUser() or 'user' not in self.scope:
 			await self.close(code=1000)
 			return
@@ -63,8 +63,8 @@ class ReservationConsumer(AsyncJsonWebsocketConsumer):
 
 	@database_sync_to_async
 	def get_reservation_json(self):
-		reservation = ReservationSerializer(
-			Reservation.objects.all(),
+		reservation = TableSerializer(
+			Table.objects.all(),
 			many=True
 		)
 
