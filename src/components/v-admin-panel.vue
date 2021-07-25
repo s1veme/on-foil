@@ -1,9 +1,7 @@
 <template>
     <div class="v-admin-panel">
         <h1>ADMIN-PANEL</h1>
-        <div v-for="item in reservation" :key="item.id">
-            <h2>{{ item.name }} {{ item.surname }}</h2>
-        </div>
+        {{ reservation }}
     </div>
 </template>
 
@@ -25,7 +23,11 @@ export default {
                 this.reservation = message.data.reservation
             }
             if (message.action === 'add_reservation') {
-                this.reservation.push(message.data.reservation)
+                const index = this.reservation.findIndex(function(voteItem) {
+                    return voteItem.id == message.data.detail.id 
+                })
+
+                this.reservation[index].reservation.push(message.data.detail.reservation)
             }
         },
         socketInit() {
