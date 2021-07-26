@@ -42,3 +42,4 @@ media
 # django folder
 static/admin
 static/rest_framework
+reports/*

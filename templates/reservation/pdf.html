@@ -26,31 +26,37 @@
 <body>
 	<h1>Отчёт за {{ tomorrow }}</h1>
 	<div>
-		<h1 style="font-size: 21px">Столик номер {{ test }}:</h1>
-		<table>
-			<thead>
-				<tr>
-					<td width="120px">Ф.И</td>
-					<td style="font-weight: bold;" width="100px">Телефон</td>
-					<td width="100px">Время</td>
-					<td width="120px">Вкус</td>
-					<td width="50px">Кр.</td>
-					<td>Пожелания</td>
-					<td width="50px">До пр.</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Андрей Голубев</td>
-					<td>79132369232</td>
-					<td>12:30-12:30</td>
-					<td>Кисло-сладкий</td>
-					<td>10</td>
-					<td>Хочу, чтобы на столе стояли цветы</td>
-					<td>Да</td>
-				</tr>
+		{% for table in reservation_data %}
+			{% if table.reservation %}
+				<h1 style="font-size: 21px">Столик номер {{ table.id }}:</h1>
+				<table>
+					<thead>
+						<tr>
+							<td width="120px">Ф.И</td>
+							<td style="font-weight: bold;" width="100px">Телефон</td>
+							<td width="100px">Время</td>
+							<td width="120px">Вкус</td>
+							<td width="50px">Кр.</td>
+							<td>Пожелания</td>
+							<td width="50px">До пр.</td>
+						</tr>
+					</thead>
+					<tbody>
+					{% for personal in table.reservation %}
+					<tr>
+						<td>{{ personal.name }} {{ personal.surname }}</td>
+						<td>{{ personal.phone_number }}</td>
+						<td>{{ personal.start }}-{{ personal.end }}</td>
+						<td>{{ personal.taste }}</td>
+						<td>{{ personal.sturdiness }}</td>
+						<td>{{ personal.wishes }}</td>
+						<td>{{ personal.before_arrival }}</td>
+					</tr>
+					{% endfor %}
+				{% endif %}
 			</tbody>
 		</table>
+		{% endfor %}
 	</div>
 </body>
 </html>
