@@ -12,24 +12,44 @@
 		}
 		body {
 			font-family: Montserrat;
+			font-size: 16px;
+		}
+		table {width: 100%; border-collapse: collapse; text-align: center; font-size: 14px;}
+		table thead tr {font-weight: bold; font-weight: 600;}
+		table thead tr td {border: 1px solid #e8e9eb; font-weight: 600; padding: 10px 0;}
+		table tbody tr td {border: 1px solid #e8e9eb; background: #f4f4f4; padding: 10px 0;}
+		h1 {
+			text-align: center;
 		}
 	</style>	
 </head>
 <body>
 	<h1>Report за {}</h1>
 	<div>
-		Столик номер {{ test }}:
+		<h1 style="font-size: 21px">Столик номер {{ test }}:</h1>
 		<table>
-			<tr>
-				<td>Имя/Фамилия</td>
-				<td>Номер телефона</td>
-				<td>Начало брони</td>
-				<td>Конец брони</td>
-				<td>Вкус</td>
-				<td>Крепкость</td>
-				<td>Пожелания</td>
-				<td>Забить до прихода</td>
-			</tr>
+			<thead>
+				<tr>
+					<td width="120px">Ф.И</td>
+					<td style="font-weight: bold;" width="100px">Телефон</td>
+					<td width="100px">Время</td>
+					<td width="120px">Вкус</td>
+					<td width="50px">Кр.</td>
+					<td>Пожелания</td>
+					<td width="50px">До пр.</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Андрей Голубев</td>
+					<td>79132369232</td>
+					<td>12:30-12:30</td>
+					<td>Кисло-сладкий</td>
+					<td>10</td>
+					<td>Хочу, чтобы на столе стояли цветы</td>
+					<td>Да</td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
 </body>
