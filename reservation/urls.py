@@ -1,9 +1,8 @@
 from django.urls import path
 
-from .views import ReservationCreateAPIView, TestPDF
+from .views import ReservationCreateAPIView
 
 
 urlpatterns = [
 	path('create-reservation', ReservationCreateAPIView.as_view()),
-	path('test', TestPDF.as_view())
 ]

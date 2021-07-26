@@ -17,9 +17,17 @@ def yesterday_date():
 	today = datetime.now()
 	tomorrow = today - timedelta(days=1)
 	return {
-		'tomorrow': tomorrow.strftime(date_format)
+		'tomorrow': tomorrow.strftime(date_format),
 	}
 
+
+def today_date()
+	date_format = '%d-%m-%Y'
+	today = datetime.now()
+	return {
+		'today': today.strftime(date_format),
+	}
+	
 
 def fetch_pdf_resources(uri, rel):
 	if uri.find(settings.MEDIA_URL) != -1:
