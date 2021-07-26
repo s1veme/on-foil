@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Отчёт</title>
+	<style>
+		@font-face {
+			font-family: Montserrat;
+			src: url("{% static 'fonts/Montserrat.ttf' %}");
+		}
+		body {
+			font-family: Montserrat;
+		}
+	</style>	
+</head>
+<body>
+	<h1>Report за {}</h1>
+	<div>
+		Столик номер {{ test }}:
+		<table>
+			<tr>
+				<td>Имя/Фамилия</td>
+				<td>Номер телефона</td>
+				<td>Начало брони</td>
+				<td>Конец брони</td>
+				<td>Вкус</td>
+				<td>Крепкость</td>
+				<td>Пожелания</td>
+				<td>Забить до прихода</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

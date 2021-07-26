@@ -38,3 +38,7 @@ static
 # media
 media
 /media
+
+# django folder
+static/admin
+static/rest_framework
