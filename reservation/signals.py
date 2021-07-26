@@ -31,20 +31,11 @@ text_message = """
 @receiver(post_save, sender=Reservation)
 def check_new_reservation(sender, instance, **kwargs):
 	reservation = TableSerializer(instance.table).data
-	# hard code
+	information = reservation['reservation'][0].values()
 	async_to_sync(bot.send_message)(
 		chat_id=settings.TELEGRAM_CHAT_ID,
 		text=text_message.format(
-			instance.name,
-			instance.surname,
-			instance.phone_number,
-			instance.start,
-			instance.end,
-			instance.table,
-			instance.taste,
-			instance.sturdiness,
-			instance.before_arrival,
-			instance.wishes
+			*information
 		)
 	)
 	channel_layer = get_channel_layer()

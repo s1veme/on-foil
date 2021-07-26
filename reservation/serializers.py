@@ -13,12 +13,17 @@ class ReservationSerializer(ModelSerializer):
 	class Meta:
 		model = Reservation
 		fields = [
-			'table',
 			'name',
 			'surname',
-			'date',
+			'phone_number',
 			'start',
 			'end',
+			'date',
+			'table',
+			'taste',
+			'sturdiness',
+			'before_arrival',
+			'wishes'
 		]
 
 
