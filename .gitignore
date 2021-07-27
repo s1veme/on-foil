@@ -43,3 +43,6 @@ media
 static/admin
 static/rest_framework
 reports/*
+
+# celery file
+celerybeat-*

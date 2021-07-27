@@ -17,9 +17,11 @@ from jwt import decode as jwt_decode
 
 User = get_user_model()
 
+
 @database_sync_to_async
 def close_connections():
     close_old_connections()
+
 
 @database_sync_to_async
 def get_user(user_jwt):

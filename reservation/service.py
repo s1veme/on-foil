@@ -13,7 +13,7 @@ from django.conf import settings
 
 
 def yesterday_date():
-	date_format = '%d-%m-%Y'
+	date_format = '%Y-%m-%d'
 	today = datetime.now()
 	tomorrow = today - timedelta(days=1)
 	return {
@@ -41,17 +41,17 @@ def fetch_pdf_resources(uri, rel):
 
 def generate_pdf(params: dict):
 	yesterday = yesterday_date()
-	file_name = yesterday['tomorrow']
+	file_path = f'{settings.BASE_DIR}/reports/{yesterday["tomorrow"]}.pdf'
 
 	params.update(yesterday)
 
 	template = get_template('reservation/pdf.html')
 	html = template.render(params)
 
-	with open(str(settings.BASE_DIR) + f'/reports/{file_name}.pdf', 'wb+') as file:
+	with open(file_path, 'wb+') as file:
 		pdf = pisa.pisaDocument(BytesIO(html.encode('UTF-8')), file,
 																   encoding='utf-8',
 																   link_callback=fetch_pdf_resources)
 
-	return file_name, True
+	return file_path, True
 

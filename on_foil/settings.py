@@ -186,13 +186,16 @@ SIMPLE_JWT = {
 
 
 # CELERY SETTINGS
-CELERY_TIMEZONE = "Europe/Barnaul"
-CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_TIMEZONE = "Asia/Barnaul"
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_BROKER_URL = 'redis://' + os.environ.get('REDIS_HOST', '127.0.0.1') + ':6379/0'
+CELERY_RESULT_BACKEND = 'redis://' + os.environ.get('REDIS_HOST', '127.0.0.1') + ':6379/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+CELERY_IMPORTS = ['reservation.tasks',]
 
-CELERY_RESULT_BACKEND='django-db'
 
 # TELEGRAM SETTINGS
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
@@ -200,7 +203,7 @@ TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 
 
 # EMAIL SETTINGS
-EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = bool(os.getenv('EMAIL_USE_TLS', False))
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
