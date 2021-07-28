@@ -29,6 +29,15 @@ def today_date():
 	}
 
 
+def check_difference_time(start, end):
+	FMT = '%H:%M'
+	tdelta = datetime.strptime(end, FMT) - datetime.strptime(start, FMT)
+
+	if tdelta >= timedelta(hours=1, minutes=30):
+		return True
+	return False
+
+
 def fetch_pdf_resources(uri, rel):
 	if uri.find(settings.MEDIA_URL) != -1:
 		path = os.path.join(settings.MEDIA_ROOT, uri.replace(settings.MEDIA_URL, ''))

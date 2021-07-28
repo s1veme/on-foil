@@ -13,6 +13,10 @@ class Table(models.Model):
 	def __str__(self):
 		return str(self.id)
 
+	class Meta:
+		verbose_name = 'стол'
+		verbose_name_plural = 'столы'
+
 
 class Reservation(models.Model):
 	table = models.ForeignKey(
@@ -73,3 +77,8 @@ class Reservation(models.Model):
 
 	def __str__(self):
 		return f'{self.name} {self.surname}'
+
+
+	class Meta:
+		verbose_name = 'бронь'
+		verbose_name_plural = 'брони'
