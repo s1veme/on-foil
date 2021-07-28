@@ -25,13 +25,10 @@ def clear_reservation_and_report():
 		many=True
 	).data
 
-	print(tables)
-
 	file_path, _ = generate_pdf({'reservation_data': tables})
 	content = open(file_path, 'rb').read()
-
 	Reservation.objects.filter(
-		date=yesterday
+		date__lte=yesterday
 	).delete()
 
 	message = EmailMessage(
