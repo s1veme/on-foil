@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'imagekit',
     'django_celery_beat',
-    'django_celery_results',
 
     'reservation',
     'gallery',
