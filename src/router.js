@@ -4,7 +4,7 @@ import store from "@/vuex/store";
 const routes = [
     {
         path: '/',
-        component: () => import('@/components/v-admin-panel'),
+        component: () => import('@/components/admin-panel/v-admin-panel'),
         name: 'admin-panel',
         meta: {
             accessTokenExpected: true

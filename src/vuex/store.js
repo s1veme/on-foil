@@ -35,6 +35,11 @@ let store = createStore({
 
 				return true
 			}
+		},
+
+		logout() {
+			this.token = ''
+			localStorage.removeItem('token')
 		}
 	},
 	getters: {}
