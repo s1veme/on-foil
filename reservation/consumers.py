@@ -17,6 +17,7 @@ User = get_user_model()
 
 
 class ReservationConsumer(AsyncJsonWebsocketConsumer):
+	
 	async def connect(self):
 		user = self.scope.get('user')
 		
@@ -35,13 +36,11 @@ class ReservationConsumer(AsyncJsonWebsocketConsumer):
 			'give_reservation'
 		)
 
-
 	async def receive_json(self, content):
 		await self.channel_layer.group_send(self.model, {
 			'type': 'send.data',
 			'data': content
 		})
-
 
 	async def send_data(self, event):
 		content = await self.validate_content(event)
@@ -52,14 +51,12 @@ class ReservationConsumer(AsyncJsonWebsocketConsumer):
 			}
 		)
 
-
 	@classmethod
 	async def validate_content(cls, content):
 		if isinstance(content, dict) \
 				and isinstance(content.get('action'), str) \
 				and isinstance(content.get('data'), dict):
 			return content
-
 
 	@database_sync_to_async
 	def get_reservation_json(self):
@@ -70,10 +67,8 @@ class ReservationConsumer(AsyncJsonWebsocketConsumer):
 
 		return reservation.data
 
-
 	async def _send_message(self, data, action=None):
 		await self.send_json(content={'status': 'ok', 'data': data, 'action': action})
-
 
 	async def disconnect(self, close_code):
 		await self.channel_layer.group_discard(

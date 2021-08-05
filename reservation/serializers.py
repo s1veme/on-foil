@@ -1,6 +1,7 @@
 from rest_framework.serializers import (
 	SerializerMethodField,
-	ModelSerializer
+	ModelSerializer,
+	ValidationError
 )
 
 from .models import (

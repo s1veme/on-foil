@@ -18,6 +18,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
 	'reservation-tasks': {
 		'task': 'reservation.tasks.clear_reservation_and_report',
-		'schedule': timedelta(seconds=30)
+		'schedule': crontab(hour=1, minute=30)
 	}
 }

@@ -128,11 +128,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Barnaul'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -153,6 +153,8 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# CORS SETTINGS
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
@@ -170,12 +172,15 @@ CORS_ALLOW_METHODS = [
 ]
 
 
+# REST_FRAMEWORK SETTINGS
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
 
+
+# JWT SETTINGS
 REST_USE_JWT = True
 
 SIMPLE_JWT = {
