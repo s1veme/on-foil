@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from rest_framework.serializers import (
 	SerializerMethodField,
 	ModelSerializer,
@@ -51,7 +53,10 @@ class TableSerializer(ModelSerializer):
 	@staticmethod
 	def get_reservation(obj):
 		qs = ReservationSerializer(
-			Reservation.objects.filter(table=obj),
+			Reservation.objects.filter(
+				table=obj,
+				date=datetime.today()
+			),
 			many=True
 		)
 		return qs.data

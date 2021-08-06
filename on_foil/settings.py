@@ -213,3 +213,20 @@ EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+
+# RESERVATION SETTINGS
+AVAILABLE_TIME = [
+    '13:00', '13:30',
+    '14:00', '14:30',
+    '15:00', '15:30',
+    '16:00', '16:30',
+    '17:00', '17:30',
+    '18:00', '18:30',
+    '19:00', '19:30',
+    '20:00', '20:30',
+    '21:00', '21:30',
+    '22:00', '22:30',
+    '23:00', '23:30',
+    '01:00',
+]

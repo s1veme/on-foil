@@ -1,12 +1,13 @@
 import json
 
 from channels.db import database_sync_to_async
+from django.db.models.signals import post_save
+
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth import get_user_model
 
-from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from .serializers import TableSerializer

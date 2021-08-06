@@ -29,13 +29,10 @@ def today_date():
 	}
 
 
-def check_difference_time(start, end):
-	FMT = '%H:%M'
-	tdelta = datetime.strptime(end, FMT) - datetime.strptime(start, FMT)
-
-	if tdelta >= timedelta(hours=1, minutes=30):
-		return True
-	return False
+def check_time_difference(start: str, end: str) -> bool:
+    FMT = '%H:%M'
+    tdelta = (datetime.strptime(end, FMT) - datetime.strptime(start, FMT)).seconds
+    return tdelta >= timedelta(hours=1, minutes=30).seconds
 
 
 def fetch_pdf_resources(uri, rel):

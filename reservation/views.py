@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from rest_framework.exceptions import ValidationError
 
 from rest_framework.views import APIView
@@ -28,9 +30,20 @@ class ReservationCreateAPIView(CreateAPIView):
 	def validate(self):
 		start = self.request.data['start']
 		end = self.request.data['end']
-
 		if not check_difference_time(start, end):
 			raise ValidationError({'error': 'the time difference must be one and a half hours'})
+
+		date = self.request.data['date']
+		table = self.request.data['table']
+		if start not in settings.AVAILABLE_TIME:
+			raise ValidationError({'error': 'This start of booking is not in the schedule'})
+		if end not in settings.AVAILABLE_TIME:
+			raise ValidationError({'error': 'This end of booking is not in the schedule'})
+
+		if Reservation.objects.filter(date=date, table=table,
+										start__gte=start, end__lte=end).exists():
+			raise ValidationError({'error': 'this time is already taken'})
+
 
 
 	def create(self, request, *args, **kwargs):
