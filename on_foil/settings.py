@@ -155,8 +155,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # CORS SETTINGS
-CORS_ALLOW_ALL_ORIGINS = True
-
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
     'http://127.0.0.1:8080',
@@ -228,5 +226,6 @@ AVAILABLE_TIME = [
     '21:00', '21:30',
     '22:00', '22:30',
     '23:00', '23:30',
+    '00:00', '00:30',
     '01:00',
 ]

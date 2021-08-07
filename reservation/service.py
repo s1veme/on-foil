@@ -29,7 +29,7 @@ def today_date():
 	}
 
 
-def check_time_difference(start: str, end: str) -> bool:
+def check_difference_time(start: str, end: str) -> bool:
     FMT = '%H:%M'
     tdelta = (datetime.strptime(end, FMT) - datetime.strptime(start, FMT)).seconds
     return tdelta >= timedelta(hours=1, minutes=30).seconds

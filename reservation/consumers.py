@@ -10,7 +10,7 @@ from django.contrib.auth import get_user_model
 
 from django.dispatch import receiver
 
-from .serializers import TableSerializer
+from .serializers import ShortTableSerializer
 from .models import Table
 
 
@@ -61,7 +61,7 @@ class ReservationConsumer(AsyncJsonWebsocketConsumer):
 
 	@database_sync_to_async
 	def get_reservation_json(self):
-		reservation = TableSerializer(
+		reservation = ShortTableSerializer(
 			Table.objects.all(),
 			many=True
 		)

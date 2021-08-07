@@ -1,12 +1,19 @@
+from datetime import datetime
+
 from django.conf import settings
 
 from rest_framework.exceptions import ValidationError
 
 from rest_framework.views import APIView
 
+from rest_framework.permissions import IsAdminUser
+
 from rest_framework.generics import (
 	CreateAPIView,
-	ListAPIView
+	ListAPIView,
+	RetrieveAPIView,
+	DestroyAPIView,
+	UpdateAPIView
 )
 
 from .models import (
@@ -21,6 +28,28 @@ from .serializers import (
 )
 
 from .service import check_difference_time
+
+
+class ReservationRetrieveAPIView(RetrieveAPIView):
+	queryset = Reservation.objects.filter(date=datetime.now())
+	serializer_class = ReservationSerializer
+	permission_classes = [IsAdminUser]
+
+
+class ReservationDestroyAPIView(DestroyAPIView):
+	queryset = Reservation.objects.filter(date=datetime.now())
+	serializer_class = ReservationSerializer
+	permission_classes = [IsAdminUser]
+
+class ReservationUpdateAPIView(UpdateAPIView):
+	queryset = Reservation.objects.filter(date=datetime.now())
+	serializer_class = ReservationSerializer
+	permission_classes = [IsAdminUser]
+	
+
+class TableTimeListAPIView(ListAPIView):
+	queryset = Table.objects.all()
+	serializer_class = TableTimeSerializer
 
 
 class ReservationCreateAPIView(CreateAPIView):
@@ -58,8 +87,3 @@ class ReservationListAPIView(ListAPIView):
 		date = self.kwargs['date']
 		table_id = self.kwargs['table']
 		return Reservation.objects.filter(date=date, table=table_id)
-
-
-class TableTimeListAPIView(ListAPIView):
-	queryset = Table.objects.all()
-	serializer_class = TableTimeSerializer

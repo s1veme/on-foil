@@ -16,6 +16,7 @@ class ReservationSerializer(ModelSerializer):
 	class Meta:
 		model = Reservation
 		fields = [
+			'id',		
 			'name',
 			'surname',
 			'phone_number',
@@ -30,6 +31,17 @@ class ReservationSerializer(ModelSerializer):
 		]
 
 
+class ShortReservationSerializer(ModelSerializer):
+	class Meta:
+		model = Reservation
+		fields = [
+			'id',
+			'start',
+			'end',
+			'table',
+		]
+
+
 class ReservationTimeSerializer(ModelSerializer):
 	class Meta:
 		model = Reservation
@@ -37,6 +49,29 @@ class ReservationTimeSerializer(ModelSerializer):
 			'start',
 			'end',
 		]
+
+
+class ShortTableSerializer(ModelSerializer):
+	reservation = SerializerMethodField()
+	
+	class Meta:
+		model = Table
+		fields = [
+			'id',
+			'reservation',
+		]
+
+
+	@staticmethod
+	def get_reservation(obj):
+		qs = ShortReservationSerializer(
+			Reservation.objects.filter(
+				table=obj,
+				date=datetime.today()
+			),
+			many=True
+		)
+		return qs.data
 
 
 class TableSerializer(ModelSerializer):
