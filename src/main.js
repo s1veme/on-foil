@@ -1,19 +1,20 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import axios from "axios";
-import store from './vuex/store'
+import axios from 'axios'
 import router from './router'
-import './assets/tailwind.css'
 
+import 'reset-css'
+import './assets/base.sass'
 
+window.axios = require('axios');
 axios.defaults.baseURL = 'http://127.0.0.1:8000';
 
-if (store.state.user.token) {
+if (localStorage.getItem('token')) {
   axios.defaults.headers["Authorization"] =
-    "Bearer " + store.state.user.token;
+    "Bearer " + localStorage.getItem('token');
 }
 
 const app = createApp(App)
-app.use(store)
 app.use(router)
 app.mount('#app')
+
