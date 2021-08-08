@@ -1,0 +1,500 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style/main.css' %}">
+    <title>Document</title>
+</head>
+<body class="body">
+
+  <header class="header wrapper">
+    <nav class="header-nav">
+        <ul class="header-list" data-info="Меню">
+            <li class="header-item">
+                <a href="#preview" class="header-router">Главная</a>
+            </li>
+            <li class="header-item">
+                <a href="#about" class="header-router">О нас</a>
+            </li>
+            <li class="header-item">
+                <a href="#benefits" class="header-router">Почему мы</a>
+            </li>
+            <li class="header-item">
+                <a href="#reservation" class="header-router">Бронь</a>
+            </li>
+            <li class="header-item">
+                <a href="#contact" class="header-router">Контакты</a>
+            </li>
+        </ul>
+        <button class="header-list-close" aria-label="Закрыть меню"></button>
+    </nav>
+    <button class="header-btn">
+        <span class="header-btn_line"></span>
+        <span class="header-btn_line"></span>
+        <span class="header-btn_line"></span>
+    </button>
+    <picture>
+        <source srcset="{% static 'images/logo.svg' %}" media="(min-width: 770px)">
+        <img src="{% static 'images/logo-991.svg' %}" class="header-logo">
+       </picture>
+</header>
+  <main>
+    <section class="preview wrapper" id="preview">
+    <div class="preview-content">
+        <div class="preview-info">
+            <h1 class="preview-title">Кальянная NAFOLGE</h1>
+            <div class="preview-description">Привет Друг! Добро пожаловать на сайт кальянной “НА ФОЛЬГЕ”. В нашем заведении вы можете приятно провести время с друзьями за кальяном и чашкой чая, либо поработать в спокойной обстановке, наслаждаясь вкусным табаком.</div>
+            <button class="preview-btn" data-modal-open="modal-1">Забронировать столик</button>
+        </div>
+        <div class="preview-social">
+            <a href="#" title="Перейти на группу в VK" target="_blank" rel="noopener noreferrer" class="preview-social-link">
+                <svg class="preview-social-icon">
+                <use xlink:href="{% static 'images/svg/sprite.svg#vk' %}"></use>
+                </svg>
+            </a>
+            <a href="#" title="Перейти на профиль в instagram" target="_blank" rel="noopener noreferrer" class="preview-social-link">
+                <svg class="preview-social-icon">
+                <use xlink:href="{% static 'images/svg/sprite.svg#inst' %}"></use>
+                </svg>
+            </a>
+            <a href="#" title="Перейти в чат telegram" target="_blank" rel="noopener noreferrer" class="preview-social-link">
+                <svg class="preview-social-icon">
+                <use xlink:href="{% static 'images/svg/sprite.svg#tel' %}"></use>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+     <div class="bg-black">
+      <section class="about wrapper" id="about">
+    <h2 class="title about-title">О нас</h2>
+    <ul class="about-list">
+        <li class="about-item">
+            <div class="about-description">Мы большая семья. В нашем заведении царит уют и только дружеская атмосфера. Каждый посетитель является не просто клиентом, а другом. Мы всегда рады видеть вас и забить вкусный и насыщенный табак и напоить горячим чаем.</div>
+            <div class="about-photo">
+                <img src="{% static 'images/test.png' %}" alt="" class="about-img">
+            </div>
+        </li>
+        <li class="about-item">
+            <div class="about-description">У нас Вы можете покурить со своими друзьями, без шума и в спокойной обстановке или же встретиться с коллегами по работе и обсудить деловые моменты за кальяном и чашечкой зелёного чая с приятным обслуживанием.</div>
+            <div class="about-photo">
+                <img src="{% static 'images/test.png' %}" alt="" class="about-img">
+            </div>
+        </li>
+        <li class="about-item">
+            <div class="about-description">Так же можно забронировать столик одному, придти с ноутбуком и поработать не отвлекаясь на бытовые дела, попивая пуэр, пока мы забиваем Вам вкусный табак. А ещё в нашем заведении есть балкончик, на который вы можете пригласить свою вторую половинку и провести незабываемый романтический вечер</div>
+            <div class="about-photo">
+                <img src="{% static 'images/test.png' %}" alt="" class="about-img">
+            </div>
+        </li>
+    </ul>
+</section>
+
+      <div class="gallery">
+    <h2 class="title gallery-title wrapper">Галерея</h2>
+
+    <div class="wrapper gallery-slider">
+        <div class="swiper-container  gallery-swiper">
+            <div class="swiper-wrapper">
+               {% for item in gallery %}
+                <div class="swiper-slide">
+                    <div class="gallery-slide">
+                        <img src="media/{{ item.image }}" alt="" class="gallery-img">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="gallery-scrollbar"></div>
+    </div>
+</div>
+    </div>
+
+      <section class="benefits wrapper" id="benefits">
+    <h2 class="title benefits-title">Почему мы?</h2>
+    <ul class="benefits-list">
+        <li class="benefits-item">
+            <div class="benefits-description">
+                <div>
+                    <span>Дружелюбное отношение к клиентам</span>, у нас царит только уютная и дружеская атмосфера
+                </div>
+            </div>
+            <img src="{% static 'images/benefits/card-1.svg' %}" alt="Хлопцы" class="benefits-img">
+        </li>
+        <li class="benefits-item">
+            <div class="benefits-description">
+                <div>
+                    Вкусный кальян на <span>любом табаке</span> с прекрасной подачей, от <span>400 рублей</span>
+                    в будние дни <span>до 17:00 и от 500 после 17:00, и по выходным</span>
+                </div>
+            </div>
+            <img src="{% static 'images/benefits/card-2.svg' %}" alt="Хлопцы" class="benefits-img">
+        </li>
+        <li class="benefits-item">
+            <div class="benefits-description">
+                <div>
+                    <span>Кэшбек 5%</span> с каждой покупки
+                </div>
+            </div>
+            <img src="{% static 'images/benefits/card-3.svg' %}" alt="Хлопцы" class="benefits-img">
+        </li>
+        <li class="benefits-item">
+            <div class="benefits-description">
+                <div>
+                    Возможность поиграть в <span>PlayStation 4 Pro</span>,
+                    а так же настольные игры, шашки и нарды
+                </div>
+            </div>
+            <img src="{% static 'images/benefits/card-4.svg' %}" alt="Хлопцы" class="benefits-img">
+        </li>
+        <li class="benefits-item">
+            <div class="benefits-description">
+                <div>
+                    Подаём вкусный чай(чёрный/зелёный) всего
+                    <span>от 50 рублей</span>, пуэр <span>от 100 рублей</span>
+                    и авторский чай <span>от 150 рублей</span>
+                </div>
+            </div>
+            <img src="{% static 'images/benefits/card-5.svg' %}" alt="Хлопцы" class="benefits-img">
+        </li>
+    </ul>
+</section>
+
+      <section class="staff">
+    <div class="wrapper staff-content">
+        <h2 class="staff-title title">Наши сотрудники</h2>
+        <div class="staff-list">
+            <div class="staff-card">
+                <img src="{% static 'images/test.png' %}" alt="ФИО человека" class="staff-phono">
+                <div class="staff-name">Петя</div>
+                <div class="staff-description">Дружелюбный, отзывчивый
+                    смекалистый. Любит забивать 
+                    вкусные кальяны.</div>
+                    <div class="staff-exp">Опыт работы 2 года.</div>
+                <div class="staff-social">
+                    <a href="#" class="staff-social_link" target="_blank" rel="noopener noreferrer" title="Перейти на страницу в VK ФИО">
+                        <svg class="staff-social_icon">
+                        <use xlink:href="{% static 'images/svg/sprite.svg#vk' %}"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="staff-social_link" target="_blank" rel="noopener noreferrer" title="Перейти на профиль в instagram ФИО">
+                        <svg class="staff-social_icon">
+                        <use xlink:href="{% static 'images/svg/sprite.svg#inst' %}"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="staff-social_link" target="_blank" rel="noopener noreferrer" title="Перейти на профиль в TikTok ФИО">
+                        <svg class="staff-social_icon">
+                        <use xlink:href="{% static 'images/svg/sprite.svg#tiktok' %}"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="staff-card">
+                <img src="{% static 'images/test.png' %}" alt="ФИО человека" class="staff-phono">
+                <div class="staff-name">Петя</div>
+                <div class="staff-description">Дружелюбный, отзывчивый
+                    смекалистый. Любит забивать 
+                    вкусные кальяны.</div>
+                    <div class="staff-exp">Опыт работы 2 года.</div>
+                <div class="staff-social">
+                    <a href="#" class="staff-social_link" target="_blank" rel="noopener noreferrer" title="Перейти на страницу в VK ФИО">
+                        <svg class="staff-social_icon">
+                        <use xlink:href="{% static 'images/svg/sprite.svg#vk' %}"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="staff-social_link" target="_blank" rel="noopener noreferrer" title="Перейти на профиль в instagram ФИО">
+                        <svg class="staff-social_icon">
+                        <use xlink:href="{% static 'images/svg/sprite.svg#inst' %}"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="staff-social_link" target="_blank" rel="noopener noreferrer" title="Перейти на профиль в TikTok ФИО">
+                        <svg class="staff-social_icon">
+                        <use xlink:href="{% static 'images/svg/sprite.svg#tiktok' %}"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+      <section class="reservation" id="reservation">
+    <h2 class="title reservation-title wrapper">Бронь</h2>
+
+    <div class="reservation-slider wrapper">
+        <div class="swiper-container reservation-swiper">
+            <div class="swiper-wrapper">
+                 
+            <div class="swiper-slide">
+                <div class="reservation-card">
+                    <h3 class="reservation-card_title">Столик №1</h3>
+                    <div class="reservation-card_place reservation-card_place--free">В данный момент столик свободен</div>
+                    <div class="reservation-card_description">
+                        <p>Столик на 4 человек возле барной стойки в главном зале. Хорошо подойдёт для отдыха небольшой компанией</p>
+                        <ul>
+                            <li>Есть PS4 Pro и настольные игры</li>
+                            <li>Более быстрая подача</li>
+                            <li>Ещё какое-нибудь приемущество</li>
+                        </ul>
+                        <p>Сегодня мы подаём особенно вкусный чай всего от 50руб.</p>
+                    </div>
+                    <button class="reservation-card_btn" data-modal-open="modal-1">Забронировать столик</button>
+                    <div class="reservation-card_busy">
+                        Забронирован: <span class="reservation-card_busy__titme" title="15:00-16:00, 22:00-23:00"> 15:00-16:00, 22:00-23:00</span>
+                    </div>
+                </div>
+            </div>
+             
+            <div class="swiper-slide">
+                <div class="reservation-card">
+                    <h3 class="reservation-card_title">Столик №1</h3>
+                    <div class="reservation-card_place reservation-card_place--free">В данный момент столик свободен</div>
+                    <div class="reservation-card_description">
+                        <p>Столик на 4 человек возле барной стойки в главном зале. Хорошо подойдёт для отдыха небольшой компанией</p>
+                        <ul>
+                            <li>Есть PS4 Pro и настольные игры</li>
+                            <li>Более быстрая подача</li>
+                            <li>Ещё какое-нибудь приемущество</li>
+                        </ul>
+                        <p>Сегодня мы подаём особенно вкусный чай всего от 50руб.</p>
+                    </div>
+                    <button class="reservation-card_btn" data-modal-open="modal-1">Забронировать столик</button>
+                    <div class="reservation-card_busy">
+                        Забронирован: <span class="reservation-card_busy__titme" title="15:00-16:00, 22:00-23:00"> 15:00-16:00, 22:00-23:00</span>
+                    </div>
+                </div>
+            </div>
+             
+            <div class="swiper-slide">
+                <div class="reservation-card">
+                    <h3 class="reservation-card_title">Столик №1</h3>
+                    <div class="reservation-card_place reservation-card_place--free">В данный момент столик свободен</div>
+                    <div class="reservation-card_description">
+                        <p>Столик на 4 человек возле барной стойки в главном зале. Хорошо подойдёт для отдыха небольшой компанией</p>
+                        <ul>
+                            <li>Есть PS4 Pro и настольные игры</li>
+                            <li>Более быстрая подача</li>
+                            <li>Ещё какое-нибудь приемущество</li>
+                        </ul>
+                        <p>Сегодня мы подаём особенно вкусный чай всего от 50руб.</p>
+                    </div>
+                    <button class="reservation-card_btn" data-modal-open="modal-1">Забронировать столик</button>
+                    <div class="reservation-card_busy">
+                        Забронирован: <span class="reservation-card_busy__titme" title="15:00-16:00, 22:00-23:00"> 15:00-16:00, 22:00-23:00</span>
+                    </div>
+                </div>
+            </div>
+             
+            <div class="swiper-slide">
+                <div class="reservation-card">
+                    <h3 class="reservation-card_title">Столик №1</h3>
+                    <div class="reservation-card_place reservation-card_place--free">В данный момент столик свободен</div>
+                    <div class="reservation-card_description">
+                        <p>Столик на 4 человек возле барной стойки в главном зале. Хорошо подойдёт для отдыха небольшой компанией</p>
+                        <ul>
+                            <li>Есть PS4 Pro и настольные игры</li>
+                            <li>Более быстрая подача</li>
+                            <li>Ещё какое-нибудь приемущество</li>
+                        </ul>
+                        <p>Сегодня мы подаём особенно вкусный чай всего от 50руб.</p>
+                    </div>
+                    <button class="reservation-card_btn" data-modal-open="modal-1">Забронировать столик</button>
+                    <div class="reservation-card_busy">
+                        Забронирован: <span class="reservation-card_busy__titme" title="15:00-16:00, 22:00-23:00"> 15:00-16:00, 22:00-23:00</span>
+                    </div>
+                </div>
+            </div>
+             
+            <div class="swiper-slide">
+                <div class="reservation-card">
+                    <h3 class="reservation-card_title">Столик №1</h3>
+                    <div class="reservation-card_place reservation-card_place--free">В данный момент столик свободен</div>
+                    <div class="reservation-card_description">
+                        <p>Столик на 4 человек возле барной стойки в главном зале. Хорошо подойдёт для отдыха небольшой компанией</p>
+                        <ul>
+                            <li>Есть PS4 Pro и настольные игры</li>
+                            <li>Более быстрая подача</li>
+                            <li>Ещё какое-нибудь приемущество</li>
+                        </ul>
+                        <p>Сегодня мы подаём особенно вкусный чай всего от 50руб.</p>
+                    </div>
+                    <button class="reservation-card_btn" data-modal-open="modal-1">Забронировать столик</button>
+                    <div class="reservation-card_busy">
+                        Забронирован: <span class="reservation-card_busy__titme" title="15:00-16:00, 22:00-23:00"> 15:00-16:00, 22:00-23:00</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+       
+    </div>
+    <div class="reservation-pagination"></div>
+</div>
+</section>
+
+     <section class="contact" id="contact">
+    <div class="wrapper contact-content">
+        <h2 class="title contact-title">Контакты</h2>
+        <ul class="contact-list">
+            <li class="contact-item">
+                <h3 class="contact-header">Телефон</h3>
+                <a href="tel:8(800)800-80-80" title="Позвонить по номеру 8(800)800-80-80" class="contact-info">8(800)800-80-80</a>
+            </li>
+            <li class="contact-item">
+                <h3 class="contact-header">Телефон</h3>
+                <div class="contact-social">
+                    <a href="#"  target="_blank" rel="noopener noreferrer" title="Перейти в группу VK" class="contact-info">
+                        <svg class="contact-info_icon">
+                        <use xlink:href="{% static 'images/svg/sprite.svg#vk' %}"></use>
+                        </svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" title="Перейти в профиль instagram" class="contact-info">
+                        <svg class="contact-info_icon">
+                        <use xlink:href="{% static 'images/svg/sprite.svg' %}"></use>
+                        </svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" title="Перейти в профиль TikTok" class="contact-info">
+                        <svg class="contact-info_icon">
+                        <use xlink:href="{% static 'images/svg/sprite.svg#tiktok' %}"></use>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+            <li class="contact-item">
+                <h3 class="contact-header">Адрес</h3>
+                <div class="contact-info">Город, Улица, Дом.</div>
+            </li>
+            <li class="contact-item">
+                <h3 class="contact-header">Часы работы</h3>
+                <time class="contact-info">13:00 - 1:00</time>
+            </li>
+        </ul>
+    </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrapper footer-content">
+        <img src="{% static 'images/logo-footer.svg' %}" alt="Логотип" class="footer-logo">
+        
+        <nav class="footer-nav">
+            <ul class="footer-list">
+                <li class="footer-item">
+                    <a href="#preview" class="footer-router">Главная</a>
+                </li>
+                <li class="footer-item">
+                    <a href="#about" class="footer-router">О нас</a>
+                </li>
+                <li class="footer-item">
+                    <a href="#benefits" class="footer-router">Почему мы</a>
+                </li>
+                <li class="footer-item">
+                    <a href="#reservation" class="footer-router">Бронь</a>
+                </li>
+                <li class="footer-item">
+                    <a href="#contact" class="footer-router">Контакты</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</footer>
+  
+
+
+<div class="modal micromodal-slide" id="modal-2" aria-hidden="true">
+
+    <div class="modal__overlay" tabindex="-1" data-modal-close>
+  
+      <!-- [3] -->
+      <div role="dialog" aria-modal="true" class="modal-dialog" aria-labelledby="modal-1-title" >
+        <h2 class="modal-title">
+            Прежде чем продолжить просмотр сайта рекомендуем ознакомиться с политикой нашего заведения
+        </h2>
+
+        <h2 class="modal-subtitle">В нашей кальянной запрещается:</h2>
+        <ul class="modal-list">
+            <li>Распитие алкогольных напитков</li>
+            <li>Курение сигарет</li>
+            <li>Садиться за столик в том колличестве человек на которое он не расчитан</li>
+        </ul>
+        <div class="modal-alert">Вход строго 18+</div>
+
+        <button class="modal-btn" data-modal-close>Понятно</button>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+
+    <div class="modal__overlay" tabindex="-1" data-modal-close>
+  
+      <!-- [3] -->
+      <div role="dialog" aria-modal="true" class="modal-dialog" aria-labelledby="modal-1-title" >
+  
+        <button class="modal-close" data-modal-close></button>
+
+        <div class="modal-fields">
+            <input class="modal-field" type="text" placeholder="Имя">
+            <input class="modal-field" type="text" placeholder="Фамилия">
+            <input class="modal-field" type="tel" name="tel" placeholder="Номер телефона">
+        </div>
+
+        <div class="modal-filter">
+            <select id="taste">
+                <option value="">Вкус</option>
+                <option value="">1</option>
+                <option value="">1</option>
+            </select>
+            <select id="fortress">
+                <option value="">Крепкость</option>
+                <option value="">1</option>
+                <option value="">1</option>
+            </select>
+            <select id="room">
+                <option value="">№ столика</option>
+                <option value="">1</option>
+                <option value="">1</option>
+            </select>
+            <select id="start">
+                <option value="">14:00</option>
+                <option value="">1</option>
+                <option value="">1</option>
+            </select>
+            <select id="end">
+                <option value="">15: 00</option>
+                <option value="">1</option>
+                <option value="">1</option>
+            </select>
+            <input type="text" placeholder="Выберите время" readonly class="modal-date" id="date">
+        </div>
+
+        <textarea class="modal-aria" placeholder="Особые пожелания"></textarea>
+ 
+        <label class="modal-label">
+            <input type="checkbox" class="modal-input">
+            <span class="modal-decor">Забить кальян до прихода</span>
+        </label>
+
+            <button class="modal-btn">Забронировать столик</button>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</body>
+
+<script src="{% static 'scripts/main.js' %}"></script>  
+
+</html>
