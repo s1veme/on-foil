@@ -43,6 +43,7 @@ class Reservation(models.Model):
 	)
 	end = models.TimeField(
 		'Конец брони',
+		
 		auto_now=False,
 		auto_now_add=False,
 	)

@@ -13,18 +13,19 @@ from .serializers import TableSerializer
 
 bot = Bot(token=settings.TELEGRAM_BOT_TOKEN)
 text_message = """
-	Новая бронь!
-	Имя Фамилия: {} {}
-	Номер телефона: {}
+Новая бронь!
+id: {}
+Имя Фамилия: {} {}
+Номер телефона: {}
 
-	Время: {}-{}
-	Дата: {}
-	Столик: {}
+Время: {}-{}
+Дата: {}
+Столик: {}
 
-	Вкус: {}
-	Крепоксть: {}
-	Забить до прихода: {}
-	Пожелания: {}
+Вкус: {}
+Крепоксть: {}
+Забить до прихода: {}
+Пожелания: {}
 """
 
 
@@ -32,6 +33,7 @@ text_message = """
 def check_new_reservation(sender, instance, **kwargs):
 	reservation = TableSerializer(instance.table).data
 	information = reservation['reservation'][0].values()
+	print(information)
 	async_to_sync(bot.send_message)(
 		chat_id=settings.TELEGRAM_CHAT_ID,
 		text=text_message.format(
