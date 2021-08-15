@@ -40,14 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'channels',
     'corsheaders',
-    'rest_framework',
-    'rest_framework_simplejwt',
     'imagekit',
-    'django_celery_beat',
 
-    'reservation',
     'gallery',
 ]
 
@@ -81,17 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'on_foil.wsgi.application'
-ASGI_APPLICATION = "on_foil.asgi.application"
 
-
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('localhost', 6379)],
-        },
-    },
-}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -144,15 +129,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# todo: delete if prod
-if DEBUG:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
-   ]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
@@ -176,66 +152,4 @@ CORS_ALLOW_METHODS = [
     'PATCH',
     'POST',
     'PUT',
-]
-
-
-# REST_FRAMEWORK SETTINGS
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'TIME_FORMAT': '%H:%M'
-}
-
-
-# JWT SETTINGS
-REST_USE_JWT = True
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=12),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=24),
-}
-
-
-# CELERY SETTINGS
-CELERY_TIMEZONE = "Asia/Barnaul"
-
-CELERY_BROKER_URL = 'redis://' + os.environ.get('REDIS_HOST', '127.0.0.1') + ':6379/0'
-CELERY_RESULT_BACKEND = 'redis://' + os.environ.get('REDIS_HOST', '127.0.0.1') + ':6379/0'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
-CELERY_IMPORTS = ['reservation.tasks',]
-
-
-# TELEGRAM SETTINGS
-TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
-TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
-
-
-# EMAIL SETTINGS
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = bool(os.getenv('EMAIL_USE_TLS', False))
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_PORT = os.getenv('EMAIL_PORT')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-
-
-# RESERVATION SETTINGS
-AVAILABLE_TIME = [
-    '13:00', '13:30',
-    '14:00', '14:30',
-    '15:00', '15:30',
-    '16:00', '16:30',
-    '17:00', '17:30',
-    '18:00', '18:30',
-    '19:00', '19:30',
-    '20:00', '20:30',
-    '21:00', '21:30',
-    '22:00', '22:30',
-    '23:00', '23:30',
-    '00:00', '00:30',
-    '01:00',
 ]
